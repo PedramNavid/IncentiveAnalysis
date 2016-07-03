@@ -7,12 +7,12 @@
 #'  >=t1 is given level 2, any result acheiving >=t2 is given level 3 and so on.
 #'
 #' @param x A vector of results to classify.
-#' @param t A vector, sorted increasingly.
+#' @param t A vector of minimum level thresholds, sorted increasingly.
 #' @return vector of length \code{length(x)} with values \code{1:(N+1)}.
 #' @examples x <- 1:100
 #'  t <- c(10, 20, 50)
 #'  findLevel(x, t)
-
+#' @export
 findLevel <- function(x,t) {
  return(findInterval(x, t) + 1)
 }

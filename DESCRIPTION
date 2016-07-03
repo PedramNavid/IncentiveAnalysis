@@ -5,6 +5,7 @@ Version: 0.1.0
 Author: Pedram Navid
 Maintainer: Pedram Navid <pedram.navid@gmail.com>
 Description: These tools aid in the creation of reward models centered around
-  incentive design.
-License: GNU GPLv3
+    incentive design.
+License: GPL-3
 LazyData: TRUE
+RoxygenNote: 5.0.1
