@@ -5,7 +5,8 @@ Version: 0.1.0
 Author: Pedram Navid
 Maintainer: Pedram Navid <pedram.navid@gmail.com>
 Description: These tools aid in the creation of reward models centered around
-    incentive design.
+    incentive design. It is based on the a result -> level -> payout model of
+    reward modeling.
 License: GPL-3
 LazyData: TRUE
 RoxygenNote: 5.0.1
