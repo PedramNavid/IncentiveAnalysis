@@ -1,9 +1,10 @@
 Package: IncentiveAnalysis
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Tools for Incentive Analysis and Modeling
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Pedram Navid
+Maintainer: Pedram Navid <pedram.navid@gmail.com>
+Description: These tools aid in the creation of reward models centered around
+  incentive design.
+License: GNU GPLv3
 LazyData: TRUE
