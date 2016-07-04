@@ -10,3 +10,4 @@ Description: These tools aid in the creation of reward models centered around
 License: GPL-3
 LazyData: TRUE
 RoxygenNote: 5.0.1
+Suggests: testthat
