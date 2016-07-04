@@ -21,5 +21,6 @@
 #' @export
 findPayout <- function(x,p) {
   if(max(x) > length(p)) stop("More levels than there are payout grids.")
+  if(min(x) < 1) stop("Lowest level must not be less than 1 for payouts.")
   return(p[x])
 }
