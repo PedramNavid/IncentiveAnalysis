@@ -1,6 +1,6 @@
 #' Annualize results with less than 12 months of observations.
 #'
-#'\code{annualizer} performs naive annualization of results with less than
+#'\code{annualize} performs naive annualization of results with less than
 #' 12 months worth of observations, essentialy multiplying each result by
 #' \emph{12/nmonths} for results < 12 months.
 #'
@@ -13,7 +13,7 @@
 #'  n <- seq(1,20)
 #'  annualize(x, n)
 #' @export
-annualizer <- function(x,nmonths) {
+annualize <- function(x,nmonths) {
   if (length(nmonths) != 1 && length(nmonths) != length(x)) {
     stop("nmonths must be of length 1 or of length(x) to annualize.")
   }
