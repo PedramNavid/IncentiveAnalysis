@@ -4,12 +4,12 @@
 \alias{findLevel}
 \title{Find level given minimum threshold}
 \usage{
-findLevel(x, t)
+findLevel(x, thresh)
 }
 \arguments{
 \item{x}{A vector of results to classify.}
 
-\item{t}{A vector of minimum level thresholds, sorted increasingly.}
+\item{thresh}{A vector of minimum level thresholds, sorted increasingly.}
 }
 \value{
 vector of length \code{length(x)} with values \code{1:(N+1)}.
@@ -23,7 +23,7 @@ vector of length \code{length(x)} with values \code{1:(N+1)}.
 }
 \examples{
 x <- 1:100
- t <- c(10, 20, 50)
- findLevel(x, t)
+ thresh <- c(10, 20, 50)
+ findLevel(x, thresh)
 }
 
