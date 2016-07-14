@@ -10,7 +10,7 @@ rmdl <- function(x, ...) UseMethod("rmdl")
 #'
 #' @return An object of class \code{"rmdl"}, which is a list with the following components:
 #'   id, group, result, level, payout
-#' @export rmdl rmdl.default
+#' @export rmdl rmdl.default mean.rmdl sum.rmdl
 #'
 #' @examples
 rmdl.default <- function(id, group=NA, result, threshold = NA, payout_grid = NA) {

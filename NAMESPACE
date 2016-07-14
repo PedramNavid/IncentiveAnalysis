@@ -3,5 +3,7 @@
 export(annualize)
 export(findLevel)
 export(findPayout)
+export(mean.rmdl)
 export(rmdl)
 export(rmdl.default)
+export(sum.rmdl)
