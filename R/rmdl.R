@@ -38,7 +38,8 @@ rmdl.default <- function(id, group=NA, result, threshold = NA, payout_grid = NA,
     result = result,
     level = level,
     payout = payout,
-    sample.n = length(id)
+    sample.n = length(id),
+    coc = sum(payout) / sum(result)
 
   )
   class(z) <- "rmdl"
@@ -66,9 +67,17 @@ sum.rmdl <- function(rmdl, na.rm = TRUE) {
   }
 }
 
-summary.rmdl <- function(rmdl, pop.count = rmdl)
+summary.rmdl <- function(rmdl, pop.count = rmdl$sample.n)
 {
-  # does nothing
+  cat("Calibration sample: ", rmdl$sample.n)
+  cat("\nTotal population: ", pop.count)
+  cat("\nAvg. Spend: ", mean(rmdl))
+  cat("\nTotal Spend: ", sum(rmdl))
+  cat("\nSample pop. results: ", sum(rmdl$result))
+  cat("\nCost of Comp: ", rmdl$coc)
+  cat("\nParticipation Rates (# & %)")
+  print(table(rmdl$level))
+  print(table(rmdl$level) / length(rmdl$level))
 }
 
 # Private Methods
