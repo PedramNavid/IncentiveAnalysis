@@ -13,15 +13,23 @@ rmdl <- function(x, ...) UseMethod("rmdl")
 #' @export rmdl rmdl.default mean.rmdl sum.rmdl
 #'
 #' @examples
-rmdl.default <- function(id, group=NA, result, threshold = NA, payout_grid = NA) {
+rmdl.default <- function(id, group=NA, result, threshold = NA, payout_grid = NA,
+  target_payout = NA) {
 
   if(any(is.na(result)))
       stop("rmdl results must not have NA values")
 
+  if(is.na(threshold))
+    threshold <- make_threshold(result)
+
+  level = findLevel(result, threshold)
+
+  if(is.na(payout_grid) && !is.na(target_payout))
+    payout_grid = make_payout(threshold, level, target_payout)
+
   if(is.na(threshold) || is.na(payout_grid))
     stop("threshold and payout_grid must be defined.")
 
-  level = findLevel(result, threshold)
   payout = findPayout(level, payout_grid)
 
   z <- list(
@@ -29,8 +37,8 @@ rmdl.default <- function(id, group=NA, result, threshold = NA, payout_grid = NA)
     group = group,
     result = result,
     level = level,
-    payout = payout
-
+    payout = payout,
+    sample.n = length(id)
 
   )
   class(z) <- "rmdl"
@@ -58,3 +66,25 @@ sum.rmdl <- function(rmdl, na.rm = TRUE) {
   }
 }
 
+summary.rmdl <- function(rmdl, pop.count = rmdl)
+{
+  # does nothing
+}
+
+# Private Methods
+make_threshold <- function(x, n=5) {
+  qs <- seq(0.1, 0.9, length.out = n)
+  return(quantile(x, p = qs, names = F))
+}
+
+make_payout <- function(threshold, level, target_payout) {
+  n = length(threshold) + 1
+  m = Mode(level)
+  step = target_payout / (m - 1)
+  return(seq(0, by = step, length.out = n))
+}
+
+Mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
