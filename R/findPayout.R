@@ -10,9 +10,10 @@
 #' @param x A vector of levels to translate to a payout.
 #' @param p A vector of payout thresholds, sorted increasingly.
 #' @return vector of length \code{length(x)}.
-#' @examples x <- sample(rep(1:4, 20))
+#' @examples x <- c(1,1,2,4)
 #'  p <- c(0, 500, 1000, 2000)
 #'  findPayout(x, p)
+#'  # [1]    0    0  500 2000
 #'\dontrun{
 #'# Not enough payouts for the number of levels provided
 #'x <- sample(rep(1:5, 20))
