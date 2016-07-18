@@ -1,7 +1,16 @@
-
 ### CLASS DEFINITIONS ------
 ############################
-
+#' Reward Grid
+#'
+#' @param pop
+#' @param lift
+#' @param thresholds
+#' @param payments
+#'
+#' @return
+#' @export rgrid
+#'
+#' @examples
 rgrid <- function(pop, lift=0, thresholds=NULL, payments=NULL) {
 
   pop$result = pop$result * ( 1 + lift)

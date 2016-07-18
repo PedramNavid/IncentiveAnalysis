@@ -5,7 +5,7 @@
 \title{Reward Modelling}
 \usage{
 \method{rmdl}{default}(id, group = NA, result, threshold = NA,
-  payout_grid = NA)
+  payout_grid = NA, target_payout = NA)
 }
 \arguments{
 \item{id}{unique identifier representing individuals being compensated}

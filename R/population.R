@@ -2,6 +2,17 @@
 ### CLASS DEFINITIONS ------
 ############################
 
+#' Population Object
+#'
+#' @param id
+#' @param group
+#' @param result
+#' @param scale
+#'
+#' @return
+#' @export
+#'
+#' @examples
 pop <- function(id, group, result, scale=1)
 {
   if(!is.numeric(scale) || length(scale) > 1)
@@ -20,7 +31,8 @@ pop <- function(id, group, result, scale=1)
   return(z)
 }
 
-tenure_pop <- function(id, group, result, scale=1, tenure=NA, annualize=FALSE)
+#' @export
+pop_tenure <- function(id, group, result, scale=1, tenure=NA, annualize=FALSE)
 {
   if(annualize) {
     if(all(is.na(tenure))) stop("Can't annualize without tenure")
@@ -36,42 +48,49 @@ tenure_pop <- function(id, group, result, scale=1, tenure=NA, annualize=FALSE)
 
 ### METHOD DEFINITIONS ------
 ############################
-
+#' @export
 is.pop <- function(x)
   inherits(x, "pop")
 
-is.tenure_pop <- function(x)
-  inherits(x, "tenure_pop")
+#' @export
+is.pop_tenure <- function(x)
+  inherits(x, "pop_tenure")
 
 ## POPULATION COUNTS
-
-pop_n <- function(pop) {
+#' @export
+pop_n <- function(pop, ...) {
   UseMethod("pop_n", pop)
 }
 
-pop_n.default <- function(pop)
+#' @export
+pop_n.default <- function(pop, ...)
 {
   stop("pop_n doesn't know how to deal with data of class ",
     paste(class(pop), collapse = "/"), call. = FALSE)
 }
 
-pop_n.pop <- function(pop_n)
+#' @export
+pop_n.pop <- function(pop, group.rm = FALSE)
 {
-  return(length(pop_n$id))
+  if(all(is.na(pop$group)) || group.rm == TRUE)
+    return(length(pop$id))
+  z <- aggregate(pop$id, by = list(Group = pop$group), length)
+  names(z) <- c("group", "n")
+  return(z)
 }
 
 ## RESULT VARIATION
-
+#' @export
 pop_var <- function(pop) {
   UseMethod("pop_var", pop)
 }
-
+#' @export
 pop_var.default <- function(pop)
 {
   stop("pop_var doesn't know how to deal with data of class ",
     paste(class(pop), collapse = "/"), call. = FALSE)
 }
-
+#' @export
 pop_var.pop <- function(pop)
 {
   cat("Result Scale: ", pop$scale)
@@ -81,7 +100,7 @@ pop_var.pop <- function(pop)
 }
 
 ## PLOT RESULT
-
+#' @export
 plot.pop <- function(pop, bins=10, ...) {
   DF <- as.data.frame(x)
   g <- ggplot(data=DF, aes(x=result), ...)

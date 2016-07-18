@@ -1,3 +1,12 @@
+#' Create a threshold object
+#'
+#' @param x
+#' @param ...
+#'
+#' @return
+#' @export make_threshold
+#'
+#' @examples
 make_threshold <- function(x, ...) {
   UseMethod("make_threshold", x)
 }

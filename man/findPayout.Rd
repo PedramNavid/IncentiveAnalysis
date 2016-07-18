@@ -23,9 +23,10 @@ level greater than the number of thresholds, \code{findPayout} requires a
 payout for every level in the vector x.
 }
 \examples{
-x <- sample(rep(1:4, 20))
+x <- c(1,1,2,4)
  p <- c(0, 500, 1000, 2000)
  findPayout(x, p)
+ # [1]    0    0  500 2000
 \dontrun{
 # Not enough payouts for the number of levels provided
 x <- sample(rep(1:5, 20))
