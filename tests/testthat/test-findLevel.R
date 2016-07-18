@@ -14,5 +14,3 @@ test_that("levels pass basic tests", {
 test_that("NAs are preserved", {
   expect_equal(findLevel(c(1,NA,3), 2), c(1, NA_integer_, 2))
 })
-
-

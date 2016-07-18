@@ -12,8 +12,7 @@ pop <- function(id, group, result, scale=1)
     id = id,
     group = group,
     result = result,
-    scale = scale,
-    df = data.frame(id, group, result)
+    scale = scale
   )
 
   ## Set the name for the class
@@ -29,7 +28,6 @@ tenure_pop <- function(id, group, result, scale=1, tenure=NA, annualize=FALSE)
   }
   tpop <- pop(id, group, result, scale)
   tpop$tenure = tenure
-  tpop$df$tenure = tenure
 
   ## Set the name for the class
   class(tpop) <- append(class(tpop),"tenure_pop")
@@ -85,7 +83,8 @@ pop_var.pop <- function(pop)
 ## PLOT RESULT
 
 plot.pop <- function(pop, bins=10, ...) {
-  g <- ggplot(data=pop$df, aes(x=result), ...)
+  DF <- as.data.frame(x)
+  g <- ggplot(data=DF, aes(x=result), ...)
 
   if(all(is.na(pop$group))) g + geom_histogram(bins = bins, ...)
     else g + geom_freqpoly(aes(colour = group), bins = bins, ...)
