@@ -131,17 +131,15 @@ sum.pop <- function(pop, measure="result", ...)
 #' @export
 print.pop <- function(pop, measure="summary", ...) {
   if(measure=="summary") {
-    cat(paste0("n=", sum(pop, measure="id")))
-    cat("\n\nlevel dist: ")
-    print.table(table(pop$level) / length(pop$level))
+    print(pop_n.pop(pop), ...)
   }
   else if(measure=="level") {
     cat("\n\nlevel dist: ")
-    print.table(table(pop$level) / length(pop$level))
+    print.table(table(pop$level), ...)
   }
   else if(measure=="payment") {
     cat("\n\npayment dist: ")
-    print.table(table(pop$payment) / length(pop$level))
+    print.table(table(pop$payment), ...)
     return()
   }
   else {
@@ -173,11 +171,13 @@ plot.pop <- function(x, bins=10, ...) {
 #' @export
 as.data.frame.pop <- function(x) {
   z <- with(x,
-       list(id=id,
+       list(id = id,
             result = result,
             group = group,
             level = level,
             payment = payment))
+  if(is.null(z$group))
+    z$group <- NA
   as.data.frame(z)
 }
 

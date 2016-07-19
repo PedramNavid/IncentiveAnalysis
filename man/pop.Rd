@@ -4,10 +4,11 @@
 \alias{pop}
 \title{Population Object}
 \usage{
-pop(id, group, result, scale = 1)
+pop(id, result, group = NULL, scale = 1, tenure = NULL,
+  annualize = FALSE, threshold = NULL, paygrid = NULL)
 }
 \arguments{
-\item{scale}{}
+\item{annualize}{}
 }
 \description{
 Population Object
