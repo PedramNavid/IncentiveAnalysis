@@ -79,21 +79,3 @@ summary.rmdl <- function(rmdl, pop.count = rmdl$sample.n)
   print(table(rmdl$level))
   print(table(rmdl$level) / length(rmdl$level))
 }
-
-# Private Methods
-make_threshold <- function(x, n=5) {
-  qs <- seq(0.1, 0.9, length.out = n)
-  return(quantile(x, p = qs, names = F))
-}
-
-make_payout <- function(threshold, level, target_payout) {
-  n = length(threshold) + 1
-  m = Mode(level)
-  step = target_payout / (m - 1)
-  return(seq(0, by = step, length.out = n))
-}
-
-Mode <- function(x) {
-  ux <- unique(x)
-  ux[which.max(tabulate(match(x, ux)))]
-}

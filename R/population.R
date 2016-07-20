@@ -101,7 +101,7 @@ pop_var.pop <- function(pop)
   cat("Result Scale: ", pop$scale)
   cat("\n\nStandard Deviation: ", sd(pop$result))
   cat("\nResult quantiles: \n")
-  print(quantile(pop$result))
+  print(stats::quantile(pop$result))
 }
 
 #' @export
@@ -151,9 +151,9 @@ print.pop <- function(pop, measure="summary", ...) {
 quantile.pop <- function(pop, measure="result", ...)
 {
   if(measure=="result")
-    return(quantile(pop$result, ...))
+    return(stats::quantile(pop$result, ...))
   if(measure=="payment")
-    return(quantile(pop$payment, ...))
+    return(stats::quantile(pop$payment, ...))
 }
 ## PLOT RESULT
 #' @export

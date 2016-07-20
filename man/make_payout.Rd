@@ -4,7 +4,7 @@
 \alias{make_payout}
 \title{Create payout grid using target threshold}
 \usage{
-make_payout(threshold, level, target_payout)
+make_payout(n, target_payout, first_payment = 0)
 }
 \arguments{
 \item{target_payout}{}
