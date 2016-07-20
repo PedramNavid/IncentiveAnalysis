@@ -140,7 +140,6 @@ print.pop <- function(pop, measure="summary", ...) {
   else if(measure=="payment") {
     cat("\n\npayment dist: ")
     print.table(table(pop$payment), ...)
-    return()
   }
   else {
     stop(gettextf("measure = '%s' is not supported.",
@@ -149,7 +148,7 @@ print.pop <- function(pop, measure="summary", ...) {
 }
 
 #' @export
-quantile.pop <- function(quantile, measure="result", ...)
+quantile.pop <- function(pop, measure="result", ...)
 {
   if(measure=="result")
     return(quantile(pop$result, ...))
@@ -186,6 +185,7 @@ as.data.frame.pop <- function(x) {
 fortify.pop <- function(model, data, ...)
   as.data.frame(model)
 
+
 # Test Data
 emp <- as.character(round(rnorm(100, 50000000, 100000)),0)
 grp <- rep(c("east", "west", "north", "south"), length.out = 100)
@@ -194,8 +194,9 @@ mypop <- pop(emp, result, grp, tenure = seq(1, 10, length.out = 100), annualize 
 popdf <- as.data.frame(mypop)
 threshold = c(seq(50000, by=50000, length.out = 4))
 poplvl <- pop(emp, result, grp, threshold = threshold)
-poppmt <- pop(emp, result, grp, scale=1000, threshold = threshold, paygrid = c(0, 5000, 15000, 35000, 55000))
-popdf2 <- as.data.frame(poppmt)
+poppmt <- pop(emp, result, grp, threshold = threshold, paygrid = c(0, 5000, 15000, 35000, 55000))
+poppmt2 <- pop(emp, result * rnorm(100,1,1), grp, threshold = threshold, paygrid = c(0, 4500, 14500, 33000, 44000))
+
 print(poppmt)
 print(poppmt, "level")
 print(poppmt, "payment")
